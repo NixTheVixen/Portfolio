@@ -1,0 +1,62 @@
+/* Full-viewport overlay of drifting snowflakes.
+   pointer-events:none so it never blocks clicks; sits above the page. */
+.snow {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.snow__flake {
+  position: absolute;
+  top: -6vh;
+  line-height: 1;
+  color: #bfe3fb; /* soft icy blue so flakes read on the light background */
+  text-shadow: 0 0 6px rgba(125, 211, 252, 0.7), 0 1px 2px rgba(56, 189, 248, 0.4);
+  user-select: none;
+  will-change: transform;
+  animation-name: snow-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Inner glyph spins slowly as the outer element handles the swaying descent. */
+.snow__inner {
+  display: block;
+  animation: snow-spin var(--spin, 7s) linear infinite;
+}
+
+/* Swaying fall: horizontal drift oscillates around the net --drift. */
+@keyframes snow-fall {
+  0% {
+    transform: translate(0, -6vh);
+  }
+  25% {
+    transform: translate(calc(var(--drift) * 0.6), 25vh);
+  }
+  50% {
+    transform: translate(calc(var(--drift) * -0.4), 55vh);
+  }
+  75% {
+    transform: translate(calc(var(--drift) * 0.9), 82vh);
+  }
+  100% {
+    transform: translate(var(--drift), 108vh);
+  }
+}
+
+@keyframes snow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snow {
+    display: none;
+  }
+}

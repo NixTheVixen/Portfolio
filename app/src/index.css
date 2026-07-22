@@ -1,0 +1,61 @@
+:root {
+  --pink: #f472a0;
+  --pink-light: #ffe4ee;
+  --blue: #7dd3fc;
+  --blue-light: #e0f2fe;
+  --purple: #a78bfa;
+  --lavender: #d8d2f2;
+  --dark: #1f2430;
+  --text-dark: #2b2b33;
+  --text-gray: #6b7280;
+
+  /* Layout: the content column the red-box bounds asked for. */
+  --maxw: 1180px;
+  --gutter: 28px;
+  --content-width: min(var(--maxw), calc(100% - var(--gutter) * 2));
+
+  /* Signature gradient (pink → lavender → sky blue), from the reference card. */
+  --grad-signature: linear-gradient(
+    140deg,
+    #ffd7e6 0%,
+    #f6d2ef 30%,
+    #d9d3f3 62%,
+    #bfe0f8 100%
+  );
+  --grad-hero-panel: linear-gradient(
+    150deg,
+    #fffafc 0%,
+    #fdeef7 45%,
+    #eef6fe 100%
+  );
+  --grad-cta-panel: linear-gradient(
+    150deg,
+    #fff4f9 0%,
+    #f1ecfb 52%,
+    #e9f5fe 100%
+  );
+
+  /* Heightened, tinted shadows for key CTAs and floating panels. */
+  --shadow-pink: 0 14px 30px -6px rgba(244, 114, 160, 0.5);
+  --shadow-dark: 0 16px 34px -8px rgba(31, 36, 48, 0.45);
+  --shadow-panel: 0 34px 70px -28px rgba(151, 116, 178, 0.45),
+    0 12px 30px -18px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--text-dark);
+  background: linear-gradient(180deg, #fdf7fb 0%, #fbfcff 42%, #fdf6fb 100%);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

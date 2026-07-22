@@ -1,0 +1,5 @@
+app/node_modules/
+app/dist/
+
+# Local Claude Code settings (personal, not for the repo)
+.claude/settings.local.json

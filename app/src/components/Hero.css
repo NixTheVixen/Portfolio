@@ -1,0 +1,245 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: var(--content-width);
+  margin: 12px auto 0;
+  padding: 56px 56px 60px;
+  background: var(--grad-hero-panel);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 36px;
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+/* soft aurora glow in the panel corners for depth */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(189, 224, 248, 0.55), transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -140px;
+  left: -100px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(255, 215, 230, 0.6), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-left {
+  max-width: 560px;
+  position: relative;
+  z-index: 2;
+}
+
+.tag-pill {
+  display: inline-block;
+  background: var(--pink-light);
+  color: var(--pink);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.hero h1 .accent {
+  color: var(--pink);
+}
+
+.hero p {
+  margin-top: 20px;
+  font-size: 17px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.hero-actions {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.view-work-btn {
+  background: var(--dark);
+  color: #fff;
+  padding: 16px 28px;
+  border-radius: 14px;
+  border: none;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow-dark);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.view-work-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 42px -10px rgba(31, 36, 48, 0.55);
+}
+
+.hero-right {
+  position: relative;
+  width: 420px;
+  height: 420px;
+  z-index: 2;
+}
+
+.fox-emoji {
+  position: absolute;
+  top: -22px;
+  left: -6px;
+  font-size: 44px;
+  z-index: 3;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+
+.snow-emoji {
+  position: absolute;
+  top: 21%;
+  right: 20%;
+  font-size: 32px;
+  z-index: 3;
+  filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.35));
+}
+
+.flower-emoji {
+  position: absolute;
+  bottom: 25%;
+  left: 22%;
+  font-size: 32px;
+  z-index: 3;
+  filter: drop-shadow(0 4px 8px rgba(244, 114, 160, 0.4));
+}
+
+.hero-card {
+  background: #fff;
+  border-radius: 32px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 34px 70px -24px rgba(151, 116, 178, 0.5),
+    0 12px 28px -16px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-card-inner {
+  background: var(--grad-signature);
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* frosted-glass photo drop-zone (the "white square").
+   Swap src/assets/profile.png for a real image — it fills this box. */
+.profile-photo {
+  /* Same bounds as the previous photo, centered between the snow/flower.
+     No background — the transparent avatar floats on the card gradient. */
+  position: absolute;
+  top: 20%;
+  left: 24%;
+  width: 52%;
+  height: 60%;
+  z-index: 1;
+  background-image: var(--pfp);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  /* Soften the hard bottom clip: fade the very bottom to transparent. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+}
+
+/* A slightly gaussian-blurred copy over the bottom band so the cut blends
+   softly instead of ending on a crisp line. */
+.profile-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--pfp);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: blur(4px);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 56%,
+    #000 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 56%,
+    #000 78%,
+    transparent 100%
+  );
+}
+
+.handle-tag {
+  position: absolute;
+  z-index: 2;
+  bottom: 18px;
+  background: #fff;
+  padding: 11px 26px;
+  border-radius: 20px;
+  font-weight: 700;
+  color: var(--pink);
+  box-shadow: 0 12px 26px -8px rgba(151, 116, 178, 0.5);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    padding: 40px 28px 44px;
+    text-align: center;
+  }
+  .hero-left {
+    max-width: 100%;
+  }
+  .hero p,
+  .hero h1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-right {
+    margin-top: 48px;
+    width: min(420px, 100%);
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}

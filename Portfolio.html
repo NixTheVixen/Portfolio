@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Nix Portfolio</title>
+<style>
+  :root{
+    --pink:#f472a0;
+    --pink-light:#ffe4ee;
+    --blue:#7dd3fc;
+    --blue-light:#e0f2fe;
+    --dark:#1f2430;
+    --text-dark:#2b2b33;
+    --text-gray:#6b7280;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:var(--text-dark);background:#fff;}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:24px 40px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;}
+  .logo-icon{width:38px;height:38px;background:var(--pink);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .nav-links{display:flex;gap:36px;list-style:none;color:#444;font-weight:500;}
+  .hire-btn{background:var(--pink);color:#fff;border:none;padding:10px 22px;border-radius:30px;font-weight:600;cursor:pointer;}
+
+  .hero{position:relative;display:flex;align-items:center;justify-content:space-between;padding:40px 40px 100px;background:linear-gradient(135deg,#fff 40%,#ffe9f1 100%);overflow:hidden;}
+  .hero-left{max-width:560px;position:relative;z-index:2;}
+  .tag-pill{display:inline-block;background:var(--pink-light);color:var(--pink);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:20px;}
+  .hero h1{font-size:56px;line-height:1.1;font-weight:800;color:var(--text-dark);}
+  .hero h1 .accent{color:var(--pink);}
+  .hero p{margin-top:20px;font-size:17px;color:var(--text-gray);line-height:1.6;max-width:480px;}
+  .hero-actions{margin-top:32px;display:flex;align-items:center;gap:24px;}
+  .view-work-btn{background:var(--dark);color:#fff;padding:16px 28px;border-radius:14px;border:none;font-weight:600;font-size:15px;display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .trust{display:flex;align-items:center;gap:12px;}
+  .avatars{display:flex;}
+  .avatars span{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;margin-left:-8px;border:2px solid #fff;}
+  .avatars span:nth-child(1){background:#93c5fd;margin-left:0;}
+  .avatars span:nth-child(2){background:var(--pink);}
+  .avatars span:nth-child(3){background:#c4b5fd;}
+  .trust-text{font-size:13px;color:var(--text-gray);}
+
+  .hero-right{position:relative;width:420px;height:420px;z-index:2;}
+  .fox-emoji{position:absolute;top:-20px;left:0;font-size:40px;z-index:3;}
+  .snow-emoji{position:absolute;top:40px;right:30px;font-size:26px;}
+  .flower-emoji{position:absolute;bottom:110px;left:20px;font-size:26px;}
+  .hero-card{background:#fff;border-radius:28px;width:100%;height:100%;box-shadow:0 20px 50px rgba(0,0,0,0.08);padding:20px;display:flex;align-items:center;justify-content:center;position:relative;}
+  .hero-card-inner{background:linear-gradient(135deg,var(--pink-light),var(--blue-light));border-radius:20px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;}
+  .profile-icon{width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:36px;}
+  .handle-tag{position:absolute;bottom:20px;background:#fff;padding:10px 24px;border-radius:20px;font-weight:700;color:var(--pink);box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+
+  .reels{padding:100px 40px;text-align:center;}
+  .reels h2{font-size:38px;font-weight:800;}
+  .reels > p{color:var(--text-gray);margin-top:12px;font-size:16px;}
+  .reel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:60px;max-width:1100px;margin-left:auto;margin-right:auto;}
+  .reel-card{text-align:left;}
+  .reel-thumb{background:#1e2433;border-radius:18px;aspect-ratio:9/16;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;}
+  .badge{position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;color:#fff;}
+  .badge.pink{background:var(--pink);}
+  .badge.blue{background:#38bdf8;}
+  .badge.yellow{background:#fbbf24;color:#3a2a00;}
+  .reel-thumb h3{color:#fff;font-size:18px;font-weight:700;}
+  .reel-meta{margin-top:18px;}
+  .reel-cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+  .reel-cat.pink{color:var(--pink);}
+  .reel-cat.blue{color:#38bdf8;}
+  .reel-cat.purple{color:#a78bfa;}
+  .reel-meta h4{font-size:20px;font-weight:700;margin-top:6px;}
+  .reel-meta p{color:var(--text-gray);font-size:14px;margin-top:8px;line-height:1.5;}
+
+  .cta{background:linear-gradient(135deg,#fff 40%,#eaf6ff 100%);text-align:center;padding:100px 40px;position:relative;overflow:hidden;}
+  .mail-icon{width:60px;height:60px;background:var(--pink);border-radius:16px;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 24px;}
+  .cta h2{font-size:38px;font-weight:800;}
+  .cta p{color:var(--text-gray);margin-top:16px;font-size:16px;}
+  .cta-actions{margin-top:36px;display:flex;justify-content:center;gap:18px;}
+  .btn-primary{background:linear-gradient(135deg,#fb7bab,#f472a0);color:#fff;border:none;padding:16px 30px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;}
+  .btn-outline{background:#fff;border:2px solid var(--pink-light);color:var(--text-dark);padding:16px 30px;border-radius:14px;font-weight:700;font-size:15px;cursor:pointer;}
+  .features{margin-top:50px;display:flex;justify-content:center;gap:40px;font-size:14px;color:var(--text-gray);}
+  .features span{display:flex;align-items:center;gap:8px;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .dot.pink{background:var(--pink);}
+  .dot.blue{background:#7dd3fc;}
+
+  footer{display:flex;align-items:center;justify-content:space-between;padding:30px 40px;border-top:1px solid #f0f0f0;}
+  .footer-links{display:flex;gap:28px;color:var(--text-gray);font-size:14px;}
+  .footer-copy{font-size:13px;color:var(--text-gray);}
+
+  @media(max-width:900px){
+    .hero{flex-direction:column;}
+    .hero-right{margin-top:60px;}
+    .reel-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-icon">🐾</span> NIX.</div>
+  <ul class="nav-links">
+    <li>Work</li><li>Process</li><li>About</li>
+  </ul>
+  <button class="hire-btn">Hire Me</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <span class="tag-pill">✦ Arctic Fox Persona &amp; Editor</span>
+    <h1>Cozy Vibe.<br><span class="accent">Fast-Paced</span><br>Edits.</h1>
+    <p>Hi, I'm Nix! I specialize in turning long Minecraft sessions into high-retention, snackable YouTube Shorts. Let's grow your channel with some icy precision and cherry blossom charm. 🌸 ❄️</p>
+    <div class="hero-actions">
+      <button class="view-work-btn">🎥 View My Work</button>
+      <div class="trust">
+        <div class="avatars"><span>M</span><span>A</span><span>K</span></div>
+        <div class="trust-text">Trusted by 15+<br>creators</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <span class="fox-emoji">🦊</span>
+    <span class="snow-emoji">❄️</span>
+    <div class="hero-card">
+      <span class="flower-emoji">🌸</span>
+      <div class="hero-card-inner">
+        <div class="profile-icon">👤</div>
+        <div class="handle-tag">@NixEdits</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reels">
+  <h2>Featured Reels</h2>
+  <p>Crafting hooks that keep viewers scrolling... to a stop.</p>
+  <div class="reel-grid">
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <span class="badge pink">HIGH RETENTION</span>
+        <h3>Hardcore Survival 100 Days Recap</h3>
+      </div>
+      <div class="reel-meta">
+        <div class="reel-cat pink">⚡ FAST-PACED HOOK</div>
+        <h4>The Speedrunner's Dilemma</h4>
+        <p>Focuses on split-second decision making with dynamic captions and SFX impact.</p>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <span class="badge blue">VISUAL STORYTELLING</span>
+        <h3>Building the Sakura Palace</h3>
+      </div>
+      <div class="reel-meta">
+        <div class="reel-cat blue">❄ COZY CINEMATIC</div>
+        <h4>Atmospheric Builds</h4>
+        <p>Satisfying time-lapse edits with soft color grading and immersive world-building.</p>
+      </div>
+    </div>
+    <div class="reel-card">
+      <div class="reel-thumb">
+        <span class="badge yellow">ENGAGING TUTORIAL</span>
+        <h3>5 Redstone Hacks You Need</h3>
+      </div>
+      <div class="reel-meta">
+        <div class="reel-cat purple">💬 HIGH ENGAGEMENT</div>
+        <h4>Value-Driven Short</h4>
+        <p>Fast information delivery with clear call-outs and zoom-ins for maximum clarity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="mail-icon">✉️</div>
+  <h2>Ready to Scale Your Channel?</h2>
+  <p>My schedule fills up fast! Grab a spot for a free edit trial or book a full project package. Let's make your next Short go viral.</p>
+  <div class="cta-actions">
+    <button class="btn-primary">Book an Edit →</button>
+    <button class="btn-outline">🦊 Work With Me</button>
+  </div>
+  <div class="features">
+    <span><span class="dot pink"></span> Fast 24h Turnaround</span>
+    <span><span class="dot blue"></span> Unlimited Revisions</span>
+    <span><span class="dot pink"></span> Custom Subtitles</span>
+  </div>
+</section>
+
+<footer>
+  <div class="logo"><span class="logo-icon" style="width:28px;height:28px;font-size:14px;">🐾</span> NIX.</div>
+  <div class="footer-links"><span>Twitter</span><span>Discord</span><span>YouTube</span><span>Instagram</span></div>
+  <div class="footer-copy">© 2024 Nix Portfolio. Made with ❄️ and 🌸</div>
+</footer>
+
+</body>
+</html>
