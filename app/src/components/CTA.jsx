@@ -16,7 +16,14 @@ export default function CTA() {
       <h2>Ready to Scale Your Channel?</h2>
       <p>Grab a spot for a free edit trial or book a commission now!</p>
       <div className="cta-actions">
-        <button className="btn-primary">Book an Edit</button>
+        <a
+          className="btn-primary"
+          href="https://calendly.com/aleycloy/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book a Meeting
+        </a>
         <button className="btn-outline">Work With Me</button>
       </div>
       <div className="features">

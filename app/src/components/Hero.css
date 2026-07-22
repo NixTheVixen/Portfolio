@@ -117,7 +117,7 @@
   position: absolute;
   top: -22px;
   left: -6px;
-  font-size: 44px;
+  font-size: 51px;
   z-index: 3;
   transform: rotate(-8deg);
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
@@ -127,7 +127,7 @@
   position: absolute;
   top: 21%;
   right: 20%;
-  font-size: 32px;
+  font-size: 37px;
   z-index: 3;
   filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.35));
 }
@@ -136,7 +136,7 @@
   position: absolute;
   bottom: 25%;
   left: 22%;
-  font-size: 32px;
+  font-size: 37px;
   z-index: 3;
   filter: drop-shadow(0 4px 8px rgba(244, 114, 160, 0.4));
 }

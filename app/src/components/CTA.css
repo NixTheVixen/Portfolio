@@ -75,10 +75,30 @@
   gap: 18px;
 }
 
+/* Book a Meeting — brand light-blue */
 .btn-primary {
-  background: linear-gradient(135deg, #fb7bab, #f472a0);
+  background: linear-gradient(135deg, #7dd3fc, #38bdf8);
   color: #fff;
   border: none;
+  padding: 16px 30px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 14px 30px -6px rgba(56, 189, 248, 0.55);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 42px -8px rgba(56, 189, 248, 0.6);
+}
+
+/* Work With Me — brand pink, filled, no stroke */
+.btn-outline {
+  background: linear-gradient(135deg, #fb7bab, #f472a0);
+  border: none;
+  color: #fff;
   padding: 16px 30px;
   border-radius: 14px;
   font-weight: 700;
@@ -88,27 +108,9 @@
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 42px -8px rgba(244, 114, 160, 0.6);
-}
-
-.btn-outline {
-  background: #fff;
-  border: 2px solid var(--pink-light);
-  color: var(--text-dark);
-  padding: 16px 30px;
-  border-radius: 14px;
-  font-weight: 700;
-  font-size: 15px;
-  cursor: pointer;
-  box-shadow: 0 10px 24px -12px rgba(31, 36, 48, 0.3);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
 .btn-outline:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 30px -12px rgba(31, 36, 48, 0.35);
+  box-shadow: 0 22px 42px -8px rgba(244, 114, 160, 0.6);
 }
 
 .features {
