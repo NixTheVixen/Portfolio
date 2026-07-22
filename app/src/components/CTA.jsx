@@ -10,7 +10,10 @@ export default function CTA() {
   return (
     <section className="cta">
       <h2>Ready to Scale Your Channel?</h2>
-      <p>Grab a spot for a free edit trial or book a commission now!</p>
+      <p>
+        Commission me through YTJobs for a free edit trial or book a meeting
+        now!
+      </p>
       <div className="cta-actions">
         <a
           className="btn-primary"
