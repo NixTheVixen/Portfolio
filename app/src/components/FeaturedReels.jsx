@@ -15,8 +15,6 @@ const reels = [
     category: '⚡ FAST-PACED HOOK',
     categoryColor: 'pink',
     heading: 'How-To Style',
-    views: '128K', // fallback shown until the API key is configured
-    likes: '9.4K',
     description:
       'Focuses on clear visuals for new players to have a point of reference.',
   },
@@ -39,15 +37,13 @@ const reels = [
     category: '💬 HIGH ENGAGEMENT',
     categoryColor: 'purple',
     heading: 'Value-Driven Short',
-    views: '214K',
-    likes: '18.3K',
     description:
       'Fast information delivery with clear call-outs and zoom-ins for maximum clarity.',
   },
 ]
 
 // Live YouTube view/like counts keyed by video id. Re-polls periodically.
-// Returns {} (→ manual fallbacks are used) when no API key is configured.
+// Returns {} when the key/API is unavailable (→ those reels render "-").
 function useYouTubeStats(ids) {
   const [stats, setStats] = useState({})
   const key = ids.join(',')
@@ -82,14 +78,13 @@ export default function FeaturedReels() {
       <div className="reel-grid">
         {reels.map((reel) => {
           const id = reel.videoId ?? reel.statsId
+          // YouTube reels show live stats, or "-" when the API can't be reached
+          // (never stale numbers). Non-API reels keep their manual values.
           const live = id ? liveStats[id] : undefined
+          const views = id ? live?.views ?? '-' : reel.views
+          const likes = id ? live?.likes ?? '-' : reel.likes
           return (
-            <ReelCard
-              key={reel.heading}
-              {...reel}
-              views={live?.views ?? reel.views}
-              likes={live?.likes ?? reel.likes}
-            />
+            <ReelCard key={reel.heading} {...reel} views={views} likes={likes} />
           )
         })}
       </div>

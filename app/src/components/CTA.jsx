@@ -1,9 +1,9 @@
 import './CTA.css'
 
 const features = [
-  { label: 'Fast 24h Turnaround', dot: 'pink' },
+  { label: 'Fast 24h Turnaround', dot: 'blue' },
   { label: 'Unlimited Revisions', dot: 'blue' },
-  { label: 'Custom Subtitles', dot: 'pink' },
+  { label: 'Custom Subtitles', dot: 'blue' },
 ]
 
 export default function CTA() {
