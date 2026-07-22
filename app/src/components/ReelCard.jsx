@@ -18,6 +18,11 @@ function HeartIcon() {
 
 export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, category, categoryColor, heading, description, views, likes }) {
   const hasEmbed = Boolean(videoId || videoSrc)
+  // On phones we don't autoplay: three looping players at once is the main
+  // source of scroll lag. Videos load paused / tap-to-play instead.
+  const isMobile =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(max-width: 768px)').matches
   return (
     <div className="reel-card">
       <div className={`reel-thumb${hasEmbed ? ' reel-thumb--video' : ''}`}>
@@ -25,7 +30,11 @@ export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, 
         {videoId ? (
           <iframe
             className="reel-video"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${videoId}`}
+            src={
+              isMobile
+                ? `https://www.youtube.com/embed/${videoId}?playsinline=1`
+                : `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${videoId}`
+            }
             title="YouTube video player"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -35,10 +44,12 @@ export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, 
           <video
             className="reel-video"
             src={videoSrc}
-            autoPlay
             muted
-            loop
             playsInline
+            autoPlay={!isMobile}
+            loop={!isMobile}
+            controls={isMobile}
+            preload={isMobile ? 'metadata' : 'auto'}
           />
         ) : (
           <h3>{title}</h3>
