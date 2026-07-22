@@ -249,3 +249,29 @@
     aspect-ratio: 1 / 1;
   }
 }
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 36px 20px 40px;
+    border-radius: 28px;
+  }
+  .hero h1 {
+    font-size: 44px;
+  }
+  .hero p {
+    font-size: 16px;
+  }
+  .hero-right {
+    margin-top: 40px;
+    width: min(340px, 100%);
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+  .hero .tag-pill {
+    font-size: 12px;
+  }
+}

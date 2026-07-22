@@ -2,14 +2,16 @@ import { useMemo } from 'react'
 import './Snowflakes.css'
 
 const FLAKE_COUNT = 24
+const MOBILE_FLAKE_COUNT = 10 // fewer on phones to stay smooth on older devices
 const GLYPHS = ['❄', '❅', '❆']
 
 export default function Snowflakes() {
   // Randomized once on mount so each flake drifts down its own path.
-  const flakes = useMemo(
-    () =>
-      Array.from({ length: FLAKE_COUNT }, (_, id) => ({
-        id,
+  const flakes = useMemo(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768
+    const count = isMobile ? MOBILE_FLAKE_COUNT : FLAKE_COUNT
+    return Array.from({ length: count }, (_, id) => ({
+      id,
         glyph: GLYPHS[id % GLYPHS.length],
         left: Math.random() * 100, // start position across the viewport (vw)
         size: 10 + Math.random() * 14, // px
@@ -20,9 +22,8 @@ export default function Snowflakes() {
         amplitude: 4 + Math.random() * 7, // sway distance to each side (vw)
         spin: 6 + Math.random() * 8, // rotation duration (s)
         opacity: 0.55 + Math.random() * 0.45,
-      })),
-    []
-  )
+    }))
+  }, [])
 
   return (
     <div className="snow" aria-hidden="true">

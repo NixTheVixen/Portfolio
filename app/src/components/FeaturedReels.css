@@ -185,8 +185,24 @@
   line-height: 1.5;
 }
 
+/* Tablet + phone: one consistent vertical column, capped so videos aren't huge */
 @media (max-width: 900px) {
   .reel-grid {
     grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .reels {
+    padding: 64px 4px;
+  }
+  .reels h2 {
+    font-size: 30px;
+  }
+  .reel-grid {
+    max-width: 340px;
   }
 }

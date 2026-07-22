@@ -13,6 +13,9 @@ export default function HeroBackdrop() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return undefined
     }
+    // Skip the scroll-driven zoom/parallax on phones — keep it a static, cheap
+    // backdrop so older/mobile devices stay smooth.
+    if (window.innerWidth <= 768) return undefined
 
     let raf = 0
     const update = () => {

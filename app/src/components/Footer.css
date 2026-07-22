@@ -55,3 +55,22 @@
   font-size: 13px;
   color: rgba(255, 255, 255, 0.55);
 }
+
+@media (max-width: 700px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 16px;
+    padding: 24px 4px;
+    text-align: center;
+  }
+  .footer-inner .logo,
+  .footer-copy {
+    justify-self: center;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 20px;
+  }
+}
