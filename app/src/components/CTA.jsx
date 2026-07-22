@@ -1,4 +1,3 @@
-import MailIcon from './MailIcon'
 import './CTA.css'
 
 const features = [
@@ -10,9 +9,6 @@ const features = [
 export default function CTA() {
   return (
     <section className="cta">
-      <div className="mail-icon">
-        <MailIcon />
-      </div>
       <h2>Ready to Scale Your Channel?</h2>
       <p>Grab a spot for a free edit trial or book a commission now!</p>
       <div className="cta-actions">
@@ -24,7 +20,14 @@ export default function CTA() {
         >
           Book a Meeting
         </a>
-        <button className="btn-outline">Work With Me</button>
+        <a
+          className="btn-outline"
+          href="https://ytjobs.co/talent/profile/588939?r=618"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Work With Me
+        </a>
       </div>
       <div className="features">
         {features.map((feature) => (

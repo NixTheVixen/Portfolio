@@ -76,7 +76,7 @@ export default function FeaturedReels() {
   const liveStats = useYouTubeStats(statsIds)
 
   return (
-    <section className="reels">
+    <section className="reels" id="reels">
       <h2>Featured Reels</h2>
       <p>Crafting finger-stopping hooks.</p>
       <div className="reel-grid">

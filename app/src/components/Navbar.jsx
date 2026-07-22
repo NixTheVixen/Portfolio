@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PawIcon from './PawIcon'
 import Modal from './Modal'
+import { scrollToBezier } from '../lib/scroll'
 import './Navbar.css'
 
 const links = ['Work', 'Process', 'About']
@@ -11,6 +12,18 @@ export default function Navbar() {
   const [openModal, setOpenModal] = useState(null)
   const triggers = { Process: 'process', About: 'about' }
   const close = () => setOpenModal(null)
+
+  const handleNav = (link) => {
+    if (link === 'Work') {
+      const el = document.getElementById('reels')
+      if (!el) return
+      const nav = document.querySelector('.navbar')
+      const offset = nav ? nav.offsetHeight : 0
+      scrollToBezier(el.getBoundingClientRect().top + window.scrollY - offset)
+    } else if (triggers[link]) {
+      setOpenModal(triggers[link])
+    }
+  }
 
   return (
     <nav className="navbar">
@@ -23,17 +36,19 @@ export default function Navbar() {
         </Link>
         <ul className="nav-links">
           {links.map((link) => (
-            <li
-              key={link}
-              onClick={
-                triggers[link] ? () => setOpenModal(triggers[link]) : undefined
-              }
-            >
+            <li key={link} onClick={() => handleNav(link)}>
               {link}
             </li>
           ))}
         </ul>
-        <button className="hire-btn">Hire Me</button>
+        <a
+          className="hire-btn"
+          href="https://ytjobs.co/talent/profile/588939?r=618"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hire Me
+        </a>
       </div>
 
       <Modal open={openModal === 'about'} onClose={close}>
