@@ -1,5 +1,6 @@
 import './Hero.css'
 import profilePhoto from '../assets/profile.png'
+import VideoIcon from './VideoIcon'
 
 export default function Hero() {
   return (
@@ -19,7 +20,15 @@ export default function Hero() {
           grow your channel together! 🌸
         </p>
         <div className="hero-actions">
-          <button className="view-work-btn">🎥 View My Work</button>
+          <a
+            className="view-work-btn"
+            href="https://ytjobs.co/talent/vitrine/588939"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <VideoIcon />
+            View My Work
+          </a>
         </div>
       </div>
       <div className="hero-right">

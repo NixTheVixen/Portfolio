@@ -1,0 +1,94 @@
+/* Full-screen overlay that dims + blurs the page behind the modal.
+   The dim/blur eases in over 1.5s; sits above everything (snowflakes are 9999). */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0);
+  animation: modal-backdrop-in 1.5s ease forwards;
+}
+
+@keyframes modal-backdrop-in {
+  from {
+    background: rgba(0, 0, 0, 0);
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.25);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* White panel matching the other white "windows" — rounded, soft shadow.
+   Slides up into place on a bezier curve. */
+.modal-window {
+  position: relative;
+  width: min(520px, 100%);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 40px 80px -24px rgba(31, 36, 48, 0.4),
+    0 12px 30px -18px rgba(0, 0, 0, 0.15);
+  padding: 44px 42px 38px;
+  color: var(--text-dark);
+  animation: modal-slide-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-window p {
+  color: var(--text-gray);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.modal-window p + p {
+  margin-top: 18px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--pink-light);
+  color: var(--pink);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.modal-close:hover {
+  background: #ffd0e0;
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-window {
+    animation-duration: 0.01ms;
+  }
+}

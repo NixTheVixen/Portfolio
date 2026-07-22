@@ -1,11 +1,24 @@
+/* Full-width dark grey footer bar. */
 .footer {
-  display: flex;
+  background: #33373f;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   width: var(--content-width);
   margin-inline: auto;
-  padding: 30px 4px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 28px 4px;
+}
+
+/* keep the logo left and copyright right so the links sit dead-center */
+.footer-inner .logo {
+  justify-self: start;
+}
+
+.footer-copy {
+  justify-self: end;
 }
 
 .footer .logo {
@@ -14,6 +27,7 @@
   gap: 10px;
   font-weight: 800;
   font-size: 20px;
+  color: #fff;
 }
 
 .footer-logo-icon {
@@ -25,15 +39,19 @@
 .footer-links {
   display: flex;
   gap: 28px;
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
 }
 
-.footer-links span {
+.footer-links a {
   cursor: pointer;
+}
+
+.footer-links a:hover {
+  color: var(--pink);
 }
 
 .footer-copy {
   font-size: 13px;
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.55);
 }

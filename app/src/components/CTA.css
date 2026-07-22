@@ -52,6 +52,11 @@
   box-shadow: var(--shadow-pink);
 }
 
+.mail-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
 .cta h2 {
   font-size: 38px;
   font-weight: 800;

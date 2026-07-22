@@ -4,10 +4,12 @@ import FeaturedReels from '../components/FeaturedReels'
 import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Snowflakes from '../components/Snowflakes'
+import HeroBackdrop from '../components/HeroBackdrop'
 
 export default function Portfolio() {
   return (
     <>
+      <HeroBackdrop />
       <Snowflakes />
       <Navbar />
       <Hero />

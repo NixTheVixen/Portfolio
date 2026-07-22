@@ -100,6 +100,12 @@
   box-shadow: 0 22px 42px -10px rgba(31, 36, 48, 0.55);
 }
 
+.btn-icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
 .hero-right {
   position: relative;
   width: 420px;
@@ -177,8 +183,8 @@
   background-position: center top;
   background-repeat: no-repeat;
   /* Soften the hard bottom clip: fade the very bottom to transparent. */
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
 }
 
 /* A slightly gaussian-blurred copy over the bottom band so the cut blends
@@ -194,14 +200,14 @@
   filter: blur(4px);
   -webkit-mask-image: linear-gradient(
     to bottom,
-    transparent 56%,
-    #000 78%,
+    transparent 70%,
+    #000 88%,
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
-    transparent 56%,
-    #000 78%,
+    transparent 70%,
+    #000 88%,
     transparent 100%
   );
 }

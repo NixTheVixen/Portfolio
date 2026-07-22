@@ -63,6 +63,25 @@
   pointer-events: none;
 }
 
+/* Video card: real embed fills the 9:16 frame; drop the tint overlay + padding
+   so nothing darkens or covers the player. */
+.reel-thumb--video {
+  padding: 0;
+}
+
+.reel-thumb--video::before {
+  display: none;
+}
+
+.reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover; /* fills the 9:16 frame (applies to <video>) */
+}
+
 .badge {
   position: absolute;
   z-index: 1;
@@ -98,10 +117,42 @@
 }
 
 .reel-meta {
+  position: relative;
   margin-top: 18px;
 }
 
+/* Views + likes, pinned top-right of the caption (the red-box area). */
+.reel-stats {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.reel-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-gray);
+}
+
+.reel-stat svg {
+  width: 15px;
+  height: 15px;
+}
+
+.reel-stat--likes svg {
+  color: var(--pink);
+}
+
 .reel-cat {
+  /* leave room so category/heading text never runs under the stats */
+  padding-right: 76px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -121,6 +172,7 @@
 }
 
 .reel-meta h4 {
+  padding-right: 76px;
   font-size: 20px;
   font-weight: 700;
   margin-top: 6px;

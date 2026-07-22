@@ -1,0 +1,44 @@
+/* Container spans roughly the first screen (the hero area) at the top of the
+   page, sits behind all content, and fades out at the bottom so it bleeds
+   smoothly into the next section. */
+.hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  /* bleed/fade the bottom into the page for a smooth section transition */
+  -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+}
+
+/* The image itself — overhangs the container so the blur edges and the
+   parallax drift never reveal a hard edge. Transform is driven by scroll (JS). */
+.hero-backdrop-img {
+  position: absolute;
+  inset: -12%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: blur(2px);
+  transform: scale(1.08);
+  will-change: transform;
+}
+
+/* Soft theme-colored veil: lifts the dark editing UI toward the page's pink so
+   nav/hero text stays readable and it blends with the palette. */
+.hero-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(253, 247, 251, 0.62) 0%,
+    rgba(253, 247, 251, 0.28) 32%,
+    rgba(253, 247, 251, 0.5) 100%
+  );
+  pointer-events: none;
+}
