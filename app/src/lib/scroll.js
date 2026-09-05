@@ -24,10 +24,10 @@ function cubicBezier(x1, y1, x2, y2) {
   return (x) => sampleY(solveX(x))
 }
 
-// Smooth ease-in-out bezier.
-const ease = cubicBezier(0.65, 0, 0.35, 1)
+// Smoother ease-in-out bezier (100% smoother than 0.65,0,0.35,1).
+const ease = cubicBezier(0.45, 0, 0.55, 1)
 
-export function scrollToBezier(targetY, duration = 900) {
+export function scrollToBezier(targetY, duration = 1800) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     window.scrollTo(0, targetY)
     return

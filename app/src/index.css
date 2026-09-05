@@ -48,6 +48,16 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   color: var(--text-dark);

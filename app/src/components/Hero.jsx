@@ -50,6 +50,66 @@ export default function Hero() {
     // no-op, handled above
   }, [phraseIdx])
 
+  const sceneRef = useRef(null)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    if (window.matchMedia('(pointer: coarse)').matches) return undefined
+    const scene = sceneRef.current
+    const hero = document.querySelector('.hero')
+    if (!scene || !hero) return undefined
+
+    let raf = 0
+    let targetX = 0
+    let targetY = 0
+
+    const update = () => {
+      raf = 0
+      // upper-right is (1, -1) in normalized space
+      const rotateY = targetX * 7
+      const rotateX = -targetY * 7
+      const distToUpperRight = Math.hypot(targetX - 1, targetY + 1)
+      // 0 at upper-right corner, ~2.8 at opposite corner → move back most at corner
+      const back = Math.max(0, 1 - distToUpperRight / 2.6) * -22
+      const tx = targetX * 8
+      const ty = targetY * 8
+      scene.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translate3d(${tx}px, ${ty}px, ${back}px)`
+    }
+
+    let leaveTimer = 0
+
+    const onMove = (e) => {
+      if (leaveTimer) {
+        clearTimeout(leaveTimer)
+        leaveTimer = 0
+      }
+      scene.style.transition = 'transform 0.08s linear'
+      const rect = hero.getBoundingClientRect()
+      targetX = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+      targetY = ((e.clientY - rect.top) / rect.height - 0.5) * 2
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+
+    const onLeave = () => {
+      targetX = 0
+      targetY = 0
+      scene.style.transition = 'transform 1.5s cubic-bezier(0.455, 0.03, 0.515, 0.955)'
+      if (!raf) raf = requestAnimationFrame(update)
+      leaveTimer = window.setTimeout(() => {
+        scene.style.transition = ''
+      }, 1500)
+    }
+
+    hero.addEventListener('mousemove', onMove)
+    hero.addEventListener('mouseleave', onLeave)
+    return () => {
+      hero.removeEventListener('mousemove', onMove)
+      hero.removeEventListener('mouseleave', onLeave)
+      if (raf) cancelAnimationFrame(raf)
+      if (leaveTimer) clearTimeout(leaveTimer)
+    }
+  }, [])
+
   return (
     <section className="hero">
       <div className="hero-left">
@@ -83,18 +143,20 @@ export default function Hero() {
         </div>
       </div>
       <div className="hero-right">
-        <span className="fox-emoji">🦊</span>
-        <span className="snow-emoji">❄️</span>
-        <div className="hero-card">
-          <span className="flower-emoji">🌸</span>
-          <div className="hero-card-inner">
-            <div
-              className="profile-photo"
-              style={{ '--pfp': `url(${profilePhoto})` }}
-              role="img"
-              aria-label="Nix's Minecraft avatar"
-            />
-            <div className="handle-tag">@NixTheVixen</div>
+        <div ref={sceneRef} className="pfp-scene">
+          <span className="fox-emoji">🦊</span>
+          <span className="snow-emoji">❄️</span>
+          <div className="hero-card">
+            <span className="flower-emoji">🌸</span>
+            <div className="hero-card-inner">
+              <div
+                className="profile-photo"
+                style={{ '--pfp': `url(${profilePhoto})` }}
+                role="img"
+                aria-label="Nix's Minecraft avatar"
+              />
+              <div className="handle-tag">@NixTheVixen</div>
+            </div>
           </div>
         </div>
       </div>
