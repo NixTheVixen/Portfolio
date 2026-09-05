@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import ReelCard from './ReelCard'
 import { fetchYouTubeStats } from '../lib/youtubeStats'
 import reel2Video from '../assets/reel2.mp4'
@@ -72,22 +73,39 @@ export default function FeaturedReels() {
   const liveStats = useYouTubeStats(statsIds)
 
   return (
-    <section className="reels" id="reels">
-      <h2>Featured Reels</h2>
-      <p>Crafting finger-stopping hooks.</p>
-      <div className="reel-grid">
+    <section className="reels" id="reels" data-aos="fade-up">
+      <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.455, 0.03, 0.515, 0.955] }}>
+        Featured Reels
+      </motion.h2>
+      <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.5 }}>
+        Crafting finger-stopping hooks.
+      </motion.p>
+      <motion.div
+        className="reel-grid"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}
+      >
         {reels.map((reel) => {
           const id = reel.videoId ?? reel.statsId
-          // YouTube reels show live stats, or "-" when the API can't be reached
-          // (never stale numbers). Non-API reels keep their manual values.
           const live = id ? liveStats[id] : undefined
           const views = id ? live?.views ?? '-' : reel.views
           const likes = id ? live?.likes ?? '-' : reel.likes
           return (
-            <ReelCard key={reel.heading} {...reel} views={views} likes={likes} />
+            <motion.div
+              key={reel.heading}
+              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+              transition={{ duration: 0.6, ease: [0.455, 0.03, 0.515, 0.955] }}
+              whileHover={{ scale: 1.04, transition: { duration: 0.22, ease: 'easeOut' } }}
+              data-aos="zoom-in"
+              data-aos-delay={reels.indexOf(reel) * 100}
+            >
+              <ReelCard {...reel} views={views} likes={likes} />
+            </motion.div>
           )
         })}
-      </div>
+      </motion.div>
     </section>
   )
 }

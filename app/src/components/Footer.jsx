@@ -30,7 +30,6 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <div className="footer-copy">© 2026 NixTheVixen Portfolio</div>
       </div>
     </footer>
   )

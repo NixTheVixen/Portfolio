@@ -8,10 +8,11 @@
 .reels h2 {
   font-size: 38px;
   font-weight: 800;
+  color: #fff;
 }
 
 .reels > p {
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.65);
   margin-top: 12px;
   font-size: 16px;
 }
@@ -25,11 +26,6 @@
 
 .reel-card {
   text-align: left;
-  transition: transform 0.2s ease;
-}
-
-.reel-card:hover {
-  transform: translateY(-6px);
 }
 
 .reel-thumb {
@@ -80,6 +76,36 @@
   height: 100%;
   border: 0;
   object-fit: cover; /* fills the 9:16 frame (applies to <video>) */
+  background: #000;
+}
+
+/* Fullscreen: keep 9:16 portrait with letterbox (pillarbox) on 16:9 screens.
+   Force contain + black bars — the card uses cover, but fullscreen must not stretch. */
+.reel-video:fullscreen,
+.reel-video:-webkit-full-screen,
+.reel-video:-moz-full-screen,
+video:fullscreen,
+video:-webkit-full-screen,
+video:-moz-full-screen {
+  object-fit: contain !important;
+  background: #000 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Backdrop behind the video in fullscreen should also be black */
+::backdrop,
+::-webkit-backdrop,
+::-moz-backdrop {
+  background: #000 !important;
+}
+
+/* Firefox specific: ensure the UA fullscreen video is constrained to 9:16 pillarbox.
+   Without this, Firefox stretches the 720x1280 to fill 16:9. */
+.reel-thumb:fullscreen,
+.reel-thumb:-webkit-full-screen,
+.reel-thumb:-moz-full-screen {
+  background: #000 !important;
 }
 
 .badge {
@@ -138,7 +164,7 @@
   gap: 5px;
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .reel-stat svg {
@@ -176,10 +202,11 @@
   font-size: 20px;
   font-weight: 700;
   margin-top: 6px;
+  color: #fff;
 }
 
 .reel-meta p {
-  color: var(--text-gray);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 14px;
   margin-top: 8px;
   line-height: 1.5;

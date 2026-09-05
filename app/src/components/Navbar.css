@@ -52,6 +52,11 @@
 
 .nav-links li {
   cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.nav-links li:hover {
+  color: var(--pink);
 }
 
 .hire-btn {

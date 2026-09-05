@@ -23,6 +23,7 @@ export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, 
   const isMobile =
     typeof window !== 'undefined' &&
     window.matchMedia('(max-width: 768px)').matches
+
   return (
     <div className="reel-card">
       <div className={`reel-thumb${hasEmbed ? ' reel-thumb--video' : ''}`}>
@@ -47,9 +48,9 @@ export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, 
             muted
             playsInline
             autoPlay={!isMobile}
-            loop={!isMobile}
-            controls={isMobile}
-            preload={isMobile ? 'metadata' : 'auto'}
+            loop
+            controls
+            preload="metadata"
           />
         ) : (
           <h3>{title}</h3>

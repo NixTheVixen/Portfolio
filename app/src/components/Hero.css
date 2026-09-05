@@ -64,6 +64,58 @@
   color: var(--pink);
 }
 
+/* Typing single-line headline: Good Vibes. ↔ Reliable Edits. */
+.hero-typing {
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--text-dark);
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hero-typing-text {
+  display: inline-flex;
+  flex-wrap: nowrap;
+}
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  animation: charFadeIn 0.18s ease forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes charFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 4px;
+  background: var(--pink);
+  border-radius: 2px;
+  animation: cursorBlink 1s step-end infinite;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+@keyframes cursorBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-char { animation: none; opacity: 1; transform: none; }
+  .hero-cursor { animation: none; opacity: 1; }
+}
+
 .hero p {
   margin-top: 20px;
   font-size: 17px;
@@ -234,9 +286,11 @@
     max-width: 100%;
   }
   .hero p,
-  .hero h1 {
+  .hero h1,
+  .hero-typing {
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
   }
   .hero-actions {
     justify-content: center;
@@ -255,8 +309,9 @@
     padding: 36px 20px 40px;
     border-radius: 28px;
   }
-  .hero h1 {
-    font-size: 44px;
+  .hero h1,
+  .hero-typing {
+    font-size: 40px;
   }
   .hero p {
     font-size: 16px;
@@ -268,8 +323,9 @@
 }
 
 @media (max-width: 400px) {
-  .hero h1 {
-    font-size: 36px;
+  .hero h1,
+  .hero-typing {
+    font-size: 30px;
   }
   .hero .tag-pill {
     font-size: 12px;

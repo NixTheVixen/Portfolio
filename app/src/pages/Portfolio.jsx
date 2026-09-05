@@ -5,10 +5,12 @@ import CTA from '../components/CTA'
 import Footer from '../components/Footer'
 import Snowflakes from '../components/Snowflakes'
 import HeroBackdrop from '../components/HeroBackdrop'
+import CustomCursor from '../components/CustomCursor'
 
 export default function Portfolio() {
   return (
     <>
+      <CustomCursor />
       <HeroBackdrop />
       <Snowflakes />
       <Navbar />
