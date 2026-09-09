@@ -26,6 +26,8 @@
 
 .reel-card {
   text-align: left;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .reel-thumb {
@@ -80,17 +82,27 @@
 }
 
 /* Fullscreen: keep 9:16 portrait with letterbox (pillarbox) on 16:9 screens.
-   Force contain + black bars — the card uses cover, but fullscreen must not stretch. */
+   Force a centered 9:16 box — the card uses cover, but fullscreen must not stretch.
+   Previous `width:100% + contain` was overridden by UA and still stretched on some browsers. */
 .reel-video:fullscreen,
 .reel-video:-webkit-full-screen,
 .reel-video:-moz-full-screen,
-video:fullscreen,
-video:-webkit-full-screen,
-video:-moz-full-screen {
+video.reel-video:fullscreen,
+video.reel-video:-webkit-full-screen,
+video.reel-video:-moz-full-screen {
+  width: auto !important;
+  height: 100vh !important;
+  max-width: 56.25vh !important;
+  max-height: 177.78vw !important;
+  aspect-ratio: 9 / 16 !important;
   object-fit: contain !important;
   background: #000 !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  inset: auto !important;
+  border-radius: 0 !important;
 }
 
 /* Backdrop behind the video in fullscreen should also be black */

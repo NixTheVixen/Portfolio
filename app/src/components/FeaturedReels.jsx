@@ -73,7 +73,7 @@ export default function FeaturedReels() {
   const liveStats = useYouTubeStats(statsIds)
 
   return (
-    <section className="reels" id="reels" data-aos="fade-up">
+    <section className="reels" id="reels">
       <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.455, 0.03, 0.515, 0.955] }}>
         Featured Reels
       </motion.h2>
@@ -98,8 +98,6 @@ export default function FeaturedReels() {
               variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.6, ease: [0.455, 0.03, 0.515, 0.955] }}
               whileHover={{ scale: 1.04, transition: { duration: 0.22, ease: 'easeOut' } }}
-              data-aos="zoom-in"
-              data-aos-delay={reels.indexOf(reel) * 100}
             >
               <ReelCard {...reel} views={views} likes={likes} />
             </motion.div>

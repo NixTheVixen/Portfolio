@@ -13,9 +13,8 @@ export default function CTA() {
       className="cta"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.7, ease: [0.455, 0.03, 0.515, 0.955] }}
-      data-aos="fade-up"
     >
       <h2>Ready to Scale Your Channel?</h2>
       <p>

@@ -9,6 +9,8 @@
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-panel);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* matching aurora glow, mirrored from the hero panel */

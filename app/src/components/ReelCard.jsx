@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 // Feather icons (MIT-licensed, royalty-free) — inlined so there are no external deps.
 function EyeIcon() {
   return (
@@ -18,11 +20,59 @@ function HeartIcon() {
 
 export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, category, categoryColor, heading, description, views, likes }) {
   const hasEmbed = Boolean(videoId || videoSrc)
+  const videoRef = useRef(null)
   // On phones we don't autoplay: three looping players at once is the main
   // source of scroll lag. Videos load paused / tap-to-play instead.
   const isMobile =
     typeof window !== 'undefined' &&
     window.matchMedia('(max-width: 768px)').matches
+
+  // Fix Firefox/Chrome stretching the 720x1280 portrait to 16:9 in native fullscreen.
+  // CSS :fullscreen with !important is ignored in some browsers, so we enforce via JS.
+  useEffect(() => {
+    if (!videoSrc) return undefined
+    const v = videoRef.current
+    if (!v) return undefined
+
+    const apply = () => {
+      const fsEl = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement
+      if (fsEl === v) {
+        v.style.setProperty('object-fit', 'contain', 'important')
+        v.style.setProperty('object-position', 'center', 'important')
+        v.style.setProperty('width', 'auto', 'important')
+        v.style.setProperty('height', '100vh', 'important')
+        v.style.setProperty('max-width', '56.25vh', 'important')
+        v.style.setProperty('max-height', '100vh', 'important')
+        v.style.setProperty('aspect-ratio', '9 / 16', 'important')
+        v.style.setProperty('background', '#000', 'important')
+        v.style.setProperty('position', 'fixed', 'important')
+        v.style.setProperty('top', '50%', 'important')
+        v.style.setProperty('left', '50%', 'important')
+        v.style.setProperty('transform', 'translate(-50%, -50%)', 'important')
+        v.style.setProperty('inset', 'auto', 'important')
+        v.style.setProperty('border-radius', '0', 'important')
+      } else {
+        v.style.removeProperty('object-fit')
+        v.style.removeProperty('object-position')
+        v.style.removeProperty('width')
+        v.style.removeProperty('height')
+        v.style.removeProperty('max-width')
+        v.style.removeProperty('max-height')
+        v.style.removeProperty('aspect-ratio')
+        v.style.removeProperty('background')
+        v.style.removeProperty('position')
+        v.style.removeProperty('top')
+        v.style.removeProperty('left')
+        v.style.removeProperty('transform')
+        v.style.removeProperty('inset')
+        v.style.removeProperty('border-radius')
+      }
+    }
+
+    const events = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange']
+    events.forEach((ev) => document.addEventListener(ev, apply))
+    return () => events.forEach((ev) => document.removeEventListener(ev, apply))
+  }, [videoSrc])
 
   return (
     <div className="reel-card">
@@ -43,6 +93,7 @@ export default function ReelCard({ badge, badgeColor, title, videoId, videoSrc, 
           />
         ) : videoSrc ? (
           <video
+            ref={videoRef}
             className="reel-video"
             src={videoSrc}
             muted
