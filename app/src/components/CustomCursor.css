@@ -8,7 +8,7 @@
   border-radius: 50%;
   background: var(--pink);
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10001;
   box-shadow: 0 0 4px rgba(244, 114, 160, 0.35);
   will-change: transform, opacity;
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
